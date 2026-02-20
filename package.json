@@ -61,14 +61,13 @@
     }
   },
   "scripts": {
-    "package": "vsce package --out dist/",
-    "build": "npm install && vsce package --out dist/",
-    "install-extension": "code --install-extension devcontainers-notifier-0.0.1.vsix --force",
-    "publish": "vsce publish"
+    "package": "mkdir -p dist && npx --yes @vscode/vsce package --out dist/devcontainers-notifier-$npm_package_version.vsix",
+    "build": "npm install && npm run package",
+    "install-extension": "code --install-extension dist/devcontainers-notifier-$npm_package_version.vsix --force",
+    "publish": "npx --yes @vscode/vsce publish"
   },
   "devDependencies": {
-    "@types/vscode": "^1.74.0",
-    "vsce": "^2.15.0"
+    "@types/vscode": "^1.74.0"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
